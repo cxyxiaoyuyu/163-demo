@@ -7,29 +7,46 @@
         <script src="../node_modules/plupload/js/plupload.min.js"></script>
         <script src="../node_modules/plupload/js/moxie.js"></script>
         <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
-        <style>
-.uploadArea {
-    width: 200px;
-    height: 100px;
-    border: 1px solid red;
-    border-radius: 5px;
-}
-    .uploadButton {
-        border: 1px solid black;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-        </style>
+        <link rel="stylesheet" href="./css/default.css">
     </head>
     <body>
-        <div id="uploadArea" class="uploadArea">
-            <span id="uploadButton" class="uploadButton">uploadButton</span>
+        <div class="container">
+            <aside>
+                <div class="newSong">
+                    <span>新建歌曲</span>
+                </div>
+
+                <ul class="songList">
+                    <li>1</li>
+                    <li>2</li>
+                    <li>3</li>
+                    <li>4</li>
+                    <li>5</li>
+                </ul>
+
+                <div id="uploadArea" class="uploadArea">
+                    <span id="uploadButton" class="uploadButton">uploadButton</span>
+                </div>
+            </aside>
+
+            <main>
+            <form class="form">
+                <div class="row"> 
+                    歌名 <input type="text">
+                </div>
+                <div class="row"> 
+                    歌手 <input type="text">
+                </div>
+                <div class="row"> 
+                    歌名 <input type="text">
+                </div>
+            </form>
+            </main>
         </div>
-        <audio id="audio" controls src=""></audio>
-        <span id="uploadStatus"></span>
+
+
+
+
         <script>
 console.log(window.AV)
 
@@ -72,7 +89,6 @@ var uploader = Qiniu.uploader({
         },
         'UploadProgress': function(up, file) {
             // 每个文件上传时，处理相关的事情
-            uploadStatus.textContent = "uploading.."
         },
         'FileUploaded': function(up, file, info) {
             // 每个文件上传成功后，处理相关的事情
@@ -85,9 +101,7 @@ var uploader = Qiniu.uploader({
             var domain = up.getOption('domain');
             var res = JSON.parse(info.response);
             var sourceLink = domain +"/"+ encodeURIComponent(res.key); //获取上传成功后的文件的Url
-            uploadStatus.textContent = "upload success" + res.key 
             console.log(sourceLink)
-            audio.src = sourceLink
         },
         'Error': function(up, err, errTip) {
             //上传出错时，处理相关的事情
