@@ -7,50 +7,29 @@
         <script src="../node_modules/plupload/js/plupload.min.js"></script>
         <script src="../node_modules/plupload/js/moxie.js"></script>
         <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <link rel="stylesheet" href="./css/default.css">
     </head>
     <body>
         <div class="container">
             <aside>
                 <div class="newSong active">
-                    <span>新建歌曲</span>
                 </div>
 
-                <ul class="songList">
-                    <li>1</li>
-                    <li>2</li>
-                    <li>3</li>
-                    <li>4</li>
-                    <li>5</li>
-                </ul>
+                <div class="songList-container">
+                </div>
 
                 <div id="uploadArea" class="uploadArea">
-                    <span id="uploadButton" class="uploadButton">uploadButton</span>
                 </div>
             </aside>
 
-            <main>
-            <form class="form">
-                <h1>新建歌曲</h1>
-                <div class="row"> 
-                    <span>歌名</span>
-                    <input type="text">
-                </div>
-                <div class="row"> 
-                    <span>歌手</span>
-                    <input type="text">
-                </div>
-                <div class="row"> 
-                    <span>歌名</span>
-                    <input type="text">
-                </div>
-                <div class="row submit">
-                    <button>submit</button>
-                </div>
-            </form>
-            </main>
+            <main></main>
         </div>
 
+    <script src='./js/song-form.js'></script>
+    <script src='./js/new-song.js'></script>
+    <script src='./js/song-list.js'></script>
+    <script src='./js/upload-song.js'></script>
 
 
 
