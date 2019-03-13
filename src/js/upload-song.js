@@ -50,8 +50,8 @@
                         var sourceLink = domain +"/"+ encodeURIComponent(res.key)
                         console.log(sourceLink)
                         eventHub.emit('upload',{
-                            name: res.key.split('-')[0],
-                            singer: res.key.split('-')[0],
+                            name: res.key.split(' - ')[1],
+                            singer: res.key.split(' - ')[0],
                             url: sourceLink
                         })
                     },
