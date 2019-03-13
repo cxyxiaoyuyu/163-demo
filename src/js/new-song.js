@@ -6,6 +6,9 @@
         `,
         render(){
             $(this.el).html(this.template)
+        },
+        active(){
+            $(this).addClass('active')
         }
     }
     let model = {}
@@ -14,7 +17,15 @@
             this.view = view
             this.model = model
             this.view.render()
+            this.bindEvents()
+        },
+        bindEvents(){
+            eventHub.on('upload',(data)=>{
+                console.log('new_song get data')
+                this.view.active()
+            })
         }
+
     }
     controller.init(view,model)
 }

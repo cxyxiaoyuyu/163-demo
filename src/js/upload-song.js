@@ -10,8 +10,6 @@
         render(){
             $(this.el).html(this.template)
         },
-
-
     }
     let model = {}
     let controller = {
@@ -47,17 +45,15 @@
                         // 每个文件上传时，处理相关的事情
                     },
                     'FileUploaded': function(up, file, info) {
-                        // 每个文件上传成功后，处理相关的事情
-                        // 其中info.response是文件上传成功后，服务端返回的json，形式如：
-                        // {
-                        //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
-                        //    "key": "gogopher.jpg"
-                        //  }
-                        // 查看简单反馈
                         var domain = up.getOption('domain');
                         var res = JSON.parse(info.response);
-                        var sourceLink = domain +"/"+ encodeURIComponent(res.key); //获取上传成功后的文件的Url
+                        var sourceLink = domain +"/"+ encodeURIComponent(res.key)
                         console.log(sourceLink)
+                        eventHub.emit('upload',{
+                            name: res.key.split('-')[0],
+                            singer: res.key.split('-')[0],
+                            url: sourceLink
+                        })
                     },
                     'Error': function(up, err, errTip) {
                         //上传出错时，处理相关的事情

@@ -24,17 +24,14 @@ var server = http.createServer(function(request, response){
         response.setHeader('Content-Type','text/json;charset=utf-8')
         response.setHeader('Access-Control-Allow-Origin','*')
 
-        console.log('entry')
         let config = fs.readFileSync('./qiniu-key.json')
         var {accessKey,secretKey} = JSON.parse(config)
-        console.log(accessKey,secretKey)
         var mac = new qiniu.auth.digest.Mac(accessKey, secretKey);
         var options = {
             scope: "163-music",
         };
         var putPolicy = new qiniu.rs.PutPolicy(options);
         var uploadToken=putPolicy.uploadToken(mac);
-        console.log(uploadToken)
         response.write(`
             {"uptoken": "${uploadToken}"}
         `)
