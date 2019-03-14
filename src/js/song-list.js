@@ -3,28 +3,42 @@
         el: '.songList-container',
         template: `
             <ul class="songList">
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-                <li>4</li>
-                <li>5</li>
             </ul>
         `,
-        render(){
-            $(this.el).html(this.template)
+        init(){
+            this.$el = $(this.el)
+        },
+        render(data){
+            this.$el.html(this.template)
+            let {songs} = data
+            this.$el.find('ul').empty()
+            songs.map((song)=>{
+                this.$el.find('ul').append(`<li>${song.name}</li>`)
+            })
+
         },
         clearActive(){
             $(this.el).find('.active').removeClass('active')
         }
     }
-    let model = {}
+    let model = {
+        data: {
+            songs: []
+        }
+    }
     let controller = {
         init(view,model){
             this.view = view
             this.model = model
-            this.view.render()
+            this.view.init()
+            this.view.render(this.model.data)
             window.eventHub.on('upload',()=>{
                 this.view.clearActive()
+            })
+            window.eventHub.on('create',(newSong)=>{
+                console.log(newSong)
+                this.model.data.songs.push(newSong)
+                this.view.render(this.model.data)
             })
         }
     }

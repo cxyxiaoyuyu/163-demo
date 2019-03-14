@@ -46,7 +46,6 @@
                 console.log(newSong)
                 let {id,attributes} = newSong
                 Object.assign(this.data,{id,name:attributes.name,singer:attributes.singer,url:attributes.url})
-                console.log(this.data)
             }, function (error) {
                 // 异常处理
                 console.error('Failed to create new object, with error message: ' + error.message);
@@ -74,7 +73,10 @@
                     obj[string] = this.view.$el.find(`[name=${string}]`).val()
                 })
                 this.model.create(obj).then(()=>{
-                    console.log(this.model.data)
+                    // deep copy,it's necessary
+                    let string = JSON.stringify(this.model.data)
+                    let newSong = JSON.parse(string)
+                    window.eventHub.emit('create',newSong)
                 })
             })
         }
