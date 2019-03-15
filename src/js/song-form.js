@@ -6,7 +6,6 @@
         },
         template: `
          <form class="form">
-                <h1>新建歌曲</h1>
                 <div class="row">
                     <span>歌名</span>
                     <input type="text" value="__name__" name="name">
@@ -32,6 +31,11 @@
                 html = html.replace(`__${string}__`,data[string] || '')
             })
             $(this.el).html(html)
+            if(data.id){
+                $(this.el).find('.form').prepend('<h1>编辑歌曲</h1>')
+            }else{
+                $(this.el).find('.form').prepend('<h1>新建歌曲</h1>')
+            }
         }
     }
     let model = {
@@ -58,10 +62,7 @@
             this.model = model
             this.view.init()
             this.view.render()
-            eventHub.on('upload',(data)=>{
-                console.log('song form get data')
-                this.view.render(data)
-            })
+            this.bindEventHub()
             this.bindEvents()
         },
         bindEvents(){
@@ -79,6 +80,16 @@
                     window.eventHub.emit('create',newSong)
                 })
             })
+        },
+        bindEventHub(){
+            window.eventHub.on('upload',(data)=>{
+                console.log('song form get data')
+                this.view.render(data)
+            })
+            window.eventHub.on('select',(data)=>{
+                this.view.render(data)
+            })
+
         }
     }
     controller.init(view,model)
