@@ -13,12 +13,16 @@
             let {songs} = data
             this.$el.find('ul').empty()
             songs.map((song)=>{
-                this.$el.find('ul').append(`<li>${song.name}</li>`)
+                this.$el.find('ul').append(`<li data-id="${song.id}">${song.name}</li>`)
             })
 
         },
         clearActive(){
             $(this.el).find('.active').removeClass('active')
+        },
+        activeItem(li){
+            console.log(li)
+            $(li).addClass('active').siblings().removeClass('active')
         }
     }
     let model = {
@@ -40,9 +44,25 @@
             this.model = model
             this.view.init()
             this.view.render(this.model.data)
+            this.getAllSongs()
+            this.bindEventHub()
+            this.bindEvents()
+        },
+        getAllSongs(){
             this.model.find().then(()=>{
                 this.view.render(this.model.data)
             })
+        },
+        bindEvents(){
+            this.view.$el.on('click','li',(e)=>{
+                this.view.activeItem(e.currentTarget)
+                let songId = e.currentTarget.getAttribute('data-id')
+                console.log(songId)
+                window.eventHub.emit('select',{id:songId})
+            })
+
+        },
+        bindEventHub(){
             window.eventHub.on('upload',()=>{
                 this.view.clearActive()
             })

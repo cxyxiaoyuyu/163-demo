@@ -9,6 +9,9 @@
         },
         active(){
             $(this).addClass('active')
+        },
+        deactive(){
+            $(this.el).removeClass('active')
         }
     }
     let model = {}
@@ -17,11 +20,18 @@
             this.view = view
             this.model = model
             this.view.render()
-            eventHub.on('upload',(data)=>{
+            this.bindEventHub()
+        },
+        bindEventHub(){
+            window.eventHub.on('upload',(data)=>{
                 console.log('new_song get data')
                 this.view.active()
             })
-        },
+            window.eventHub.on('select',(data)=>{
+                this.view.deactive()
+            })
+
+        }
 
     }
     controller.init(view,model)
