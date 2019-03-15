@@ -21,8 +21,10 @@
             $(this.el).find('.active').removeClass('active')
         },
         activeItem(li){
-            console.log(li)
             $(li).addClass('active').siblings().removeClass('active')
+        },
+        updateActiveSong(data){
+            this.$el.find('li.active').text(data.name)
         }
     }
     let model = {
@@ -72,9 +74,17 @@
                 this.view.clearActive()
             })
             window.eventHub.on('create',(newSong)=>{
-                console.log(newSong)
                 this.model.data.songs.push(newSong)
                 this.view.render(this.model.data)
+            })
+            window.eventHub.on('update',(data)=>{
+                // update model
+                for(let i=0;i<this.model.data.songs.length;i++){
+                    if(this.model.data.songs[i].id === data.id){
+                        this.model.data.songs[i] = data
+                    }
+                }
+                this.view.updateActiveSong(data)
             })
         }
     }

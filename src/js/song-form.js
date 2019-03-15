@@ -41,6 +41,7 @@
     let model = {
         data: {name:'',singer:'',url:'',id:''},
         create(obj){
+            console.log('create')
             var song = AV.Object.extend('song');
             var song = new song();
             song.set('name', obj.name);
@@ -54,6 +55,16 @@
                 // 异常处理
                 console.error('Failed to create new object, with error message: ' + error.message);
             });
+        },
+        update(obj){
+            console.log('update')
+            var song = AV.Object.createWithoutData('song', this.data.id);
+            song.set('name', obj.name);
+            song.set('singer', obj.singer);
+            song.set('url', obj.url);
+            Object.assign(this.data,obj)
+            console.log(this.data)
+            return song.save()
         }
     }
     let controller = {
@@ -73,23 +84,35 @@
                 needs.map((string)=>{
                     obj[string] = this.view.$el.find(`[name=${string}]`).val()
                 })
-                this.model.create(obj).then(()=>{
-                    // deep copy,it's necessary
-                    let string = JSON.stringify(this.model.data)
-                    let newSong = JSON.parse(string)
-                    window.eventHub.emit('create',newSong)
-                })
+                console.log(this.model.data,'xxxx')
+                if(this.model.data.id){
+                    console.log('update')
+                    this.model.update(obj).then(()=>{
+                        console.log('ok')
+                        window.eventHub.emit('update',JSON.parse(JSON.stringify(this.model.data)))
+                    })
+                }else{
+                    console.log('create')
+                    this.model.create(obj).then(()=>{
+                        // deep copy,it's necessary
+                        let string = JSON.stringify(this.model.data)
+                        let newSong = JSON.parse(string)
+                        window.eventHub.emit('create',newSong)
+                    })
+                }
             })
         },
         bindEventHub(){
             window.eventHub.on('upload',(data)=>{
                 console.log('song form get data')
+                this.model.data = data
                 this.view.render(data)
             })
             window.eventHub.on('select',(data)=>{
+                console.log(data)
+                this.model.data = data
                 this.view.render(data)
             })
-
         }
     }
     controller.init(view,model)
