@@ -120,6 +120,9 @@
     width: 32.8%; 
     margin: 8px 0;
 }
+.tab-1 .songSheetList .songSheet .img p{
+    padding-left: 5px;
+}
 .tab-1 .newSongs .songList{
     margin-top: 18px;
 }
