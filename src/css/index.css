@@ -79,3 +79,35 @@
     padding: 0 5px;
 }
 
+/* tabs */
+.tabItem > .tab{
+    display: none;
+}
+.tabItem > .tab.active{
+    display: block;
+}
+
+
+/* tab-1 */
+.tabTitle {
+    border-left: 2px solid #D43C33;
+    font-size: 17px;
+    line-height: 1;
+    padding-left: 8px;
+    margin: 20px 0 8px;
+}
+.tab-1 .songSheetList{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.tab-1 .songSheetList .songSheet{
+    width: 32.8%; 
+    margin: 8px 0;
+}
+.tab-1 .newSongs .songList{
+    margin-top: 18px;
+    border: 1px solid red;
+}
+
+
