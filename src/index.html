@@ -6,7 +6,11 @@
         <title>My music</title>
         <link rel="stylesheet" href="./css/reset.css">
         <link rel="stylesheet" href="./css/index.css">
+        <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
         <script src="//at.alicdn.com/t/font_1091968_a9o1kmvsy7.js"></script>
+        <script src='./js/initializers/av.js'></script>
+        <script src='./js/event-hub.js'></script>
     </head>
     <body>
         <div class="container">
@@ -26,9 +30,9 @@
             <div class="music-container">
                 <nav class="navTab" id="navTab">
                     <ul class="tab-container">
-                        <li tab=1 class="tab active"><div class="text"><span>推荐音乐</span></li>
-                        <li tab=1 class="tab"><div class="text"><span>热歌榜</span></li>
-                        <li tab=1 class="tab"><div class="text"><span>搜索</span></li>
+                        <li tab=tab1 class="tab active"><div class="text"><span>推荐音乐</span></li>
+                        <li tab=tab2 class="tab"><div class="text"><span>热歌榜</span></li>
+                        <li tab=tab3 class="tab"><div class="text"><span>搜索</span></li>
                     </ul>
                 </nav>
                 <div class="tabItem">
@@ -76,49 +80,7 @@
                         </div>
                         <div class="newSongs">
                             <h2 class="tabTitle">最新音乐</h2> 
-                            <ol class="songList">
-                                <li class="song">
-                                    <h3>那是你离开了北京的生活</h3>
-                                    <p>
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-sq"></use>
-                                        </svg>
-                                        <span class="singer">薛之谦</span>
-                                    </p>
-                                    <a class="playButton">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-play"></use>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="song">
-                                    <h3>那是你离开了北京的生活</h3>
-                                    <p>
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-sq"></use>
-                                        </svg>
-                                        <span class="singer">薛之谦</span>
-                                    </p>
-                                    <a class="playButton">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-play"></use>
-                                        </svg>
-                                    </a>
-                                </li>
-                                <li class="song">
-                                    <h3>你还要我怎样</h3>
-                                    <p>
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-sq"></use>
-                                        </svg>
-                                        <span class="singer">薛之谦</span>
-                                    </p>
-                                    <a class="playButton">
-                                        <svg class="icon" aria-hidden="true">
-                                            <use xlink:href="#icon-play"></use>
-                                        </svg>
-                                    </a>
-                                </li>
+                            <ol class="songList" id="songList">
                             </ol>
                         </div>
                         <footer>
@@ -137,5 +99,10 @@
                 </div>
             </div>
         </div> 
+        <script src='./js/event-hub.js'></script>
+        <script src='./js/index/tabs.js'></script>
+        <script src='./js/index/tab-1.js'></script>
+        <script src='./js/index/tab-2.js'></script>
+        <script src='./js/index/tab-3.js'></script>
     </body>
 </html>

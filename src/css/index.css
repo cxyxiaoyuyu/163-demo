@@ -86,9 +86,11 @@
 .navTab ul li.active .text{
     border-bottom: 2px solid red;
 }
+.navTab ul li .text span{
+    padding: 0 5px;
+}
 .navTab ul li.active .text span{
     color: red;
-    padding: 0 5px;
 }
 
 /* tabs */
