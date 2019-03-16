@@ -7,6 +7,11 @@
     height: 64px;
     border: 1px solid red;
     background: #d43c33; 
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    top: 0;
+    left: 0;
 }
 .topBar-content {
     padding: 0 10px;
@@ -49,7 +54,14 @@
 /* nav tabs */
 .navTab {
     height: 40px;
+    position: fixed;
+    top: 64px;;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    background: #fff;
 }
+
 .navTab .tab-container {
     align-items: center;
     justify-content: center;
@@ -80,6 +92,9 @@
 }
 
 /* tabs */
+.tabItem {
+    margin-top: 122px;
+}
 .tabItem > .tab{
     display: none;
 }
@@ -107,7 +122,25 @@
 }
 .tab-1 .newSongs .songList{
     margin-top: 18px;
-    border: 1px solid red;
+}
+.tab-1 .newSongs .songList .song {
+    margin-left: 10px;
+    position: relative;
+}
+.tab-1 .newSongs .songList .song h3{
+    font-size: 17px;
+    font-weight: normal;
+}
+.tab-1 .newSongs .songList .song .playButton {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+}
+.tab-1 .newSongs .songList .song .playButton svg{
+    fill: #aaa;
+    width: 22px;
+    height: 22px;
 }
 
 
