@@ -103,4 +103,39 @@ main .form .row.submit button{
     border-radius: 3px;
 }
 
-
+/* upload loading */
+.site-loading {
+    visibility: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.site-loading.active {
+    visibility: visible;
+}
+.site-loading::before {
+    content: '';
+    display: block;
+    width: 100px;
+    height: 100px;
+    background: pink;
+    border-radius: 50%;
+    animation: loading 1s infinite;
+    animation-direction: alternate-reverse;
+    animation-timing-function: linear;
+}
+@keyframes  loading {
+    0% {
+        transform: scale(1.0);
+    }
+    100% {
+        transform: scale(0.1);
+    }
+}
