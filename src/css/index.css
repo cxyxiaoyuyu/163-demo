@@ -44,3 +44,38 @@
     border-radius: 30px;
 }
 
+/* music-container*/
+
+/* nav tabs */
+.navTab {
+    height: 40px;
+}
+.navTab .tab-container {
+    align-items: center;
+    justify-content: center;
+}
+.navTab ul {
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+    display: flex;
+}
+.navTab ul li {
+    flex-grow: 1; 
+    text-align: center;
+    height: 100%;
+    line-height: 40px; 
+}
+.navTab ul li .text{
+    text-align: center;
+    font-size: 15px;
+    height: 100%;
+    display: inline-block;
+}
+.navTab ul li.active .text{
+    border-bottom: 2px solid red;
+}
+.navTab ul li.active .text span{
+    color: red;
+    padding: 0 5px;
+}
+
