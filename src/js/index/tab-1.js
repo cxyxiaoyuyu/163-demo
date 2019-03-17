@@ -16,6 +16,7 @@
             this.view = view
             this.view.init()
             this.loadModule()
+            this.bindEventHub()
         },
         loadModule(){
             let script1 = document.createElement('script')
@@ -27,7 +28,7 @@
         },
         bindEventHub(){
             window.eventHub.on('selectTab',(data)=>{
-                if(data == 'tab1'){
+                if(data === 'tab1'){
                     this.view.active()
                 }else{
                     this.view.deactive()
