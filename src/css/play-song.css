@@ -2,6 +2,7 @@
 .container {
     height: 100vh;
     position: relative;
+    background: rgba(0,0,0,0.6);
 }
 .container .cover{
     content: '';
