@@ -18,6 +18,10 @@
                     <span>链接</span>
                     <input type="text" value="__url__" name="url">
                 </div>
+                <div class="row">
+                    <span>背景图片</span>
+                    <input type="text" value="__img__" name="img">
+                </div>
                 <div class="row submit">
                     <button>submit</button>
                 </div>
@@ -25,7 +29,7 @@
         `,
         render(data={}){
             console.log(data)
-            let placeholder = ['name','url','singer']
+            let placeholder = ['name','url','singer','img']
             let html = this.template
             placeholder.map((string)=>{
                 html = html.replace(`__${string}__`,data[string] || '')
@@ -39,7 +43,7 @@
         }
     }
     let model = {
-        data: {name:'',singer:'',url:'',id:''},
+        data: {name:'',singer:'',url:'',id:'','img':''},
         create(obj){
             console.log('create')
             var song = AV.Object.extend('song');
@@ -47,10 +51,11 @@
             song.set('name', obj.name);
             song.set('singer', obj.singer);
             song.set('url', obj.url);
+            song.set('img', obj.img);
             return song.save().then((newSong)=>{
                 console.log(newSong)
                 let {id,attributes} = newSong
-                Object.assign(this.data,{id,name:attributes.name,singer:attributes.singer,url:attributes.url})
+                Object.assign(this.data,{id,...attributes})
             }, function (error) {
                 // 异常处理
                 console.error('Failed to create new object, with error message: ' + error.message);
@@ -62,6 +67,7 @@
             song.set('name', obj.name);
             song.set('singer', obj.singer);
             song.set('url', obj.url);
+            song.set('img', obj.img);
             Object.assign(this.data,obj)
             console.log(this.data)
             return song.save()
@@ -79,7 +85,7 @@
         bindEvents(){
             this.view.$el.on('submit','.form',(e)=>{
                 e.preventDefault()
-                let needs = ['name','singer','url']
+                let needs = ['name','singer','url','img']
                 let obj = {}
                 needs.map((string)=>{
                     obj[string] = this.view.$el.find(`[name=${string}]`).val()

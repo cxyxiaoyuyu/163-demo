@@ -7,8 +7,11 @@
         template: `
 
         `,
-        render(url){
-            this.$el.find('audio').attr('src',url)
+        render(data){
+            console.log(data)
+            this.$el.find('audio').attr('src',data.url)
+            this.$el.find('.songImg').attr('src',data.img)
+            this.$el.find('.cover').css('background-image',`url('${data.img}')`)
         },
         play(){
             console.log(this.$el.find('audio'))
@@ -56,7 +59,7 @@
             console.log(id)
             this.model.get(id).then(()=>{
                 console.log(this.model.data)
-                this.view.render(this.model.data.url)
+                this.view.render(this.model.data)
             })
         }
     }
