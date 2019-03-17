@@ -90,3 +90,32 @@
     }
 }
 
+
+
+/* lyrics */
+.song-description {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; 
+}
+.song-description .songName{
+    font-size: 18px;
+    color: #fff;
+    height: 34px;
+}
+.song-description .lyrics{
+    height: 72px;
+    overflow: hidden;
+}
+.song-description .lyrics .lines{
+    line-height: 24px;
+    color: #b1a7a7;
+    font-size: 14px;
+    text-align:center;
+    transition: all 0.3s;
+}
+.song-description .lyrics .lines p.active{
+    color: #fff;
+}
