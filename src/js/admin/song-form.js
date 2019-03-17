@@ -22,6 +22,10 @@
                     <span>背景图片</span>
                     <input type="text" value="__img__" name="img">
                 </div>
+                <div class="row">
+                    <span>歌词</span>
+                    <textarea name="lyrics" style="width: 450px;height:122px;">__lyrics__</textarea>
+                </div>
                 <div class="row submit">
                     <button>submit</button>
                 </div>
@@ -29,7 +33,7 @@
         `,
         render(data={}){
             console.log(data)
-            let placeholder = ['name','url','singer','img']
+            let placeholder = ['name','url','singer','img','lyrics']
             let html = this.template
             placeholder.map((string)=>{
                 html = html.replace(`__${string}__`,data[string] || '')
@@ -43,13 +47,14 @@
         }
     }
     let model = {
-        data: {name:'',singer:'',url:'',id:'','img':''},
+        data: {name:'',singer:'',url:'',id:'','img':'','lyrics':''},
         create(obj){
             console.log('create')
             var song = AV.Object.extend('song');
             var song = new song();
             song.set('name', obj.name);
             song.set('singer', obj.singer);
+            song.set('lyrics', obj.lyrics);
             song.set('url', obj.url);
             song.set('img', obj.img);
             return song.save().then((newSong)=>{
@@ -66,6 +71,7 @@
             var song = AV.Object.createWithoutData('song', this.data.id);
             song.set('name', obj.name);
             song.set('singer', obj.singer);
+            song.set('lyrics', obj.lyrics);
             song.set('url', obj.url);
             song.set('img', obj.img);
             Object.assign(this.data,obj)
@@ -85,7 +91,7 @@
         bindEvents(){
             this.view.$el.on('submit','.form',(e)=>{
                 e.preventDefault()
-                let needs = ['name','singer','url','img']
+                let needs = ['name','singer','url','img','lyrics']
                 let obj = {}
                 needs.map((string)=>{
                     obj[string] = this.view.$el.find(`[name=${string}]`).val()
