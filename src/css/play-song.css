@@ -1,0 +1,91 @@
+/* music */
+.container {
+    height: 100vh;
+    position: relative;
+}
+.container::after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../img/xiaochou.jpg') no-repeat;
+    background-size: cover;
+    z-index: -1;
+    filter: blur(5px);
+}
+/* logo */
+.logo {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    jusitify-content: center;
+    align-items: center;
+}
+.logo svg {
+    fill: #e4dbdb;
+    width: 6vw;
+    height: 6vw;
+    background: red;
+    border-radius: 10px;
+}
+.logo span{
+    color: #fff;
+    padding-left: 3px;
+}
+.pointer {
+    position: absolute; 
+    top: 0;
+    width: 24vw;
+    left: 45vw;
+    z-index: 1;
+}
+
+
+.disc-container {
+    padding-top: 18vw;
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+}
+.disc-container .disc {
+    width: 72vw;
+    animation: rotate 20s infinite linear;
+    animation-play-state: paused;
+}
+.disc-container.playing .disc {
+    animation-play-state: running;
+}
+.disc-container .songImg {
+    position: absolute;
+    width: 45.5vw;
+    border-radius: 50%;
+    animation: rotate 20s infinite linear;
+    animation-play-state: paused;
+}
+.disc-container.playing .songImg {
+    animation-play-state: running;
+}
+.disc-container .icon{
+    position: absolute;
+    fill: #8c8787;
+    width: 15%;
+    height: 15%;
+}
+.disc-container .icon.hide{
+    display: none;
+}
+
+/* animation rotate */
+@keyframes rotate{
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+

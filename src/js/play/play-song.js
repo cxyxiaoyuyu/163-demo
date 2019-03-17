@@ -5,11 +5,18 @@
             this.$el = $(this.el)
         },
         template: `
-            <audio autoplay controls src="__url__"></audio>
+
         `,
         render(url){
-            this.$el.html(this.template.replace('__url__',url))
-        }
+            this.$el.find('audio').attr('src',url)
+        },
+        play(){
+            console.log(this.$el.find('audio'))
+            this.$el.find('audio')[0].play()
+        },
+        pause(){
+            this.$el.find('audio')[0].pause()
+        },
     }
     let model = {
         data: {id:'',url:'',name:'',singer:''},
@@ -27,6 +34,20 @@
             this.view.init()
             this.model = model
             this.getSongId()
+            this.bindEvents()
+        },
+        bindEvents(){
+            this.view.$el.on('click','.disc-container',(ev)=>{
+                console.log('1111')
+                if($(ev.currentTarget).hasClass('playing')){
+                    this.view.$el.find('#play').removeClass('hide')
+                    this.view.pause()
+                }else{
+                    this.view.$el.find('#play').addClass('hide')
+                    this.view.play()
+                }
+                $(ev.currentTarget).toggleClass('playing')
+            })
         },
         getSongId(){
             let search = window.location.search.substring(1)
