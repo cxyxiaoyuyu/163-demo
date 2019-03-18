@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset=utf-8>
+        <title>管理页面-创建歌单</title>
+        <script src="../node_modules/leancloud-storage/dist/av-min.js"></script>
+        <script src="../node_modules/plupload/js/plupload.min.js"></script>
+        <script src="../node_modules/plupload/js/moxie.js"></script>
+        <script src="../node_modules/qiniu-js/dist/qiniu.min.js"></script>
+        <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+        <link rel="stylesheet" href="./css/reset.css">
+        <link rel="stylesheet" href="./css/default.css">
+        <style>
+            .container > aside {
+                width: 310px;
+            }
+            .playlist-container {
+                padding-left: 20px;
+                margin-top: 20px;
+                line-height: 30px;
+            }
+            .playlist-container li{
+                border-bottom: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <aside>
+                <div class="playlist-container">
+                </div>
+            </aside>
+
+            <main></main>
+        </div>
+
+    <script src='./js/initializers/av.js'></script>
+    <script src='./js/event-hub.js'></script>
+    <script src='./js/admin/playlist-form.js'></script>
+    <script src='./js/admin/playlist-list.js'></script>
+    </body>
+</html>

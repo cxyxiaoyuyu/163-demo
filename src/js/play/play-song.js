@@ -83,6 +83,7 @@
             let audio = this.view.$el.find('audio')[0]
             audio.onended = ()=>{
                 this.view.pause()
+                console.log('end')
                 this.view.$el.find('.disc-container').removeClass('playing')
             }
             audio.ontimeupdate = ()=>{
