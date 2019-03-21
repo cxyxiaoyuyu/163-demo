@@ -9,7 +9,7 @@
 ## 用到的技术
 
 #### MVC思想,EventHub
-#### 七牛上传API，leanCloud数据存储API
-#### CSS3动画,SVG,JQuery
+#### 七牛拖拽上传API，leanCloud数据存储API
+#### CSS3动画,SVG,JQuery,audio API
 
 
