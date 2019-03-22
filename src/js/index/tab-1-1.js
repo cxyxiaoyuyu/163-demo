@@ -10,10 +10,12 @@
                 console.log(value)
                 this.$el.append(`
                     <li class="songSheet" playlist-id="${value.id}">
-                        <div class="img">
-                            <img src="${value.img}">
-                            <p>${value.summary}</p>
-                        </div>
+                        <a href="./playlist.html?id=${value.id}">
+                            <div class="img">
+                                <img src="${value.img}">
+                                <p>${value.summary}</p>
+                            </div>
+                        </a>
                     </li>
                 `)
             })
